@@ -5,7 +5,7 @@ const AuthorizeToken = require("../middleware/AuthorizeToken");
 
 router.post("/register",User.RegisterUser);
 router.post("/login",User.LoginUser);
-router.get("/Getallusers",AuthorizeToken  ,User.GetAllUsers);
+router.get("/getallusers",AuthorizeToken  ,User.GetAllUsers);
 router.get('/current',AuthorizeToken, User.CurrentUser);
 router.put('/updatedata',AuthorizeToken, User.UpdateUser);
 router.get('/verify-email', User.VerifyUser);

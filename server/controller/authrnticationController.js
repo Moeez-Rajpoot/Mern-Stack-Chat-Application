@@ -190,7 +190,13 @@ const CurrentUser = asynchandler(async (req, res) => {
 // Public
 const GetAllUsers = asynchandler(async (req, res) => {
   try {
-    const users = await User.find({});
+    const users = await User.find({}).select("-Password");
+    if (!users) {
+      return res.status(404).json({ message: "No Users Found" });
+      
+    }
+   
+
     res.json(users);
   } catch (error) {
 
