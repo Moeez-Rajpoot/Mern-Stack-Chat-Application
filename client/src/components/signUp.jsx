@@ -495,7 +495,7 @@ function signUp() {
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row justify-center items-center bg-no-repeat bg-cover h-screen w-full bg-black">
+      <div className="flex flex-col sm:flex-row text-black  justify-center items-center bg-no-repeat bg-cover h-screen w-full bg-black">
         <div
           className={
             isSignUp
@@ -746,7 +746,7 @@ function signUp() {
             )}
 
             {isSignUp && !isReset && (
-              <div className="custom-input-field flex ml-1 gap-1 mt-3 mb-2.5 w-3/4 rounded-md font-sans">
+              <div className="custom-input-field flex ml-1 gap-1 mt-3 bg-white mb-2.5 w-3/4 rounded-md font-sans">
                 <label
                   className="text-nowrap pl-2 font-semibold flex mb-2"
                   htmlFor="Gender"
@@ -755,7 +755,7 @@ function signUp() {
                 </label>
                 <select
                   id="Gender"
-                  className="w-4/5 p-2 rounded border border-gray-300 text-base"
+                  className="w-4/5 p-2 rounded border bg-white border-gray-300 text-base"
                   name="Gender"
                   value={gender}
                   onChange={handleGenderChange}

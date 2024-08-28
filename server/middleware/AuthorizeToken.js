@@ -5,8 +5,11 @@ const AuthorizeToken = asynchandler(async (req, res, next) => {
   let Token;
   let Authorization = req.headers.authorization;
 
+  console.log("Authurization",Authorization);
+
   if (Authorization && Authorization.startsWith("Bearer")) {
     Token = Authorization.split(" ")[1];
+    console.log("Toekn" , Token);
 
     if (!Token) {
       res.status(401);

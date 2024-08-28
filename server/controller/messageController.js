@@ -11,6 +11,8 @@ const SendMessage = asyncHandler(async (req, res) => {
         return res.status(400).json({ error: 'Message content is required' });
     }
 
+    console.log(SenderId, ReceiverId, message);
+
     try {
         let conversation = await Conversation.findOne({
             Participants: {
@@ -57,7 +59,8 @@ const GetMessage = asyncHandler(async (req, res) => {
     }).populate('Message');
 
     if(!conversation){
-        return res.status(404).json({error: 'No conversation found'});
+        console.log("No conversation found");
+        return res.status(200).json({message: []});
     }
 
     res.status(200).json(conversation.Message);

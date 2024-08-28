@@ -15,8 +15,8 @@ const transporter = nodemailer.createTransport({
   host: 'smtp.ethereal.email',
   port: 587,
   auth: {
-      user: 'delbert.franecki@ethereal.email',
-      pass: 'Qcu9Q4dXyb52zwzhmx'
+      user: 'agnes23@ethereal.email',
+      pass: 'vhtys3fmSMv69SYhXM'
   }
 });
 
@@ -153,7 +153,10 @@ const LoginUser = asynchandler(async (req, res) => {
       }
     );
  
-    res.status(200).json({ accesstoken: token });
+    res.status(200).json({ accesstoken: token , 
+      id: user._id,
+      Image: user.Image,
+     });
   } catch (error) {
   
     res
@@ -189,8 +192,9 @@ const CurrentUser = asynchandler(async (req, res) => {
 // api/user/Getallusers
 // Public
 const GetAllUsers = asynchandler(async (req, res) => {
+  const id = req.user.id;
   try {
-    const users = await User.find({}).select("-Password");
+    const users = await User.find({ _id: { $ne: id } }).select("-Password");
     if (!users) {
       return res.status(404).json({ message: "No Users Found" });
       
