@@ -49,14 +49,14 @@ function MessageContainer({ selecteduser }) {
   }, [messages]);
 
   return (
-    <div className="w-[95%] h-[85.5%] mt-2 flex flex-col mx-auto rounded-lg overflow-hidden bg-gray-900 backdrop-blur-3xl px-5 py-5">
+    <div className="w-[98%] h-[87%] mt-2 flex flex-col mx-auto rounded-lg overflow-hidden bg-gray-900 backdrop-blur-3xl px-5 py-5">
       <div className="h-[90%] overflow-scroll hide-scrollbar">
         {Array.isArray(messages) && messages.length > 0 ? (
           messages.map((message, index) => (
             <div
               key={index}
               className={`chat ${
-                message.SenderId === userData.id ? "chat-end" : "chat-start"
+                message.SenderId === userData.id ? "chat-end " : "chat-start"
               }`}
             >
               <div className="chat-image avatar">
@@ -77,7 +77,7 @@ function MessageContainer({ selecteduser }) {
                   {new Date(message.createdAt).toLocaleTimeString()}
                 </time>
               </div>
-              <div className="chat-bubble">{message.Message}</div>
+              <div className={`chat-bubble ${message.SenderId === userData.id ? "bg-green-600 text-white" : "bg-[#1c232b]" } `}>{message.Message}</div>
             </div>
           ))
         ) : (

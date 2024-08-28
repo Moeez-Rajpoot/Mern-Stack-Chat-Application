@@ -495,7 +495,7 @@ function signUp() {
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row text-black  justify-center items-center bg-no-repeat bg-cover h-screen w-full bg-black">
+      <div className="flex flex-col sm:flex-row text-black focus:bg-transparent  justify-center items-center bg-no-repeat bg-cover h-screen w-full bg-black">
         <div
           className={
             isSignUp

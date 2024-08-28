@@ -42,7 +42,7 @@ function SendMessage({receiverid , AccessToken , setUpdated }) {
 
 
   return (
-    <div className="h-[10%] flex justify-between items-center">
+    <div className="h-[10%] pt-2 bg-transparent backdrop-blur-sm  flex justify-between items-center">
       <input
       value={message}
       onChange={(e) => setMessage(e.target.value)}

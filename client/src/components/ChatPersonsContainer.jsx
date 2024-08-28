@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import ChatsPersons from './ChatsPersons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { LogOutState } from '../Redux/Reducers/Loginstate';
 import { clearUserData } from '../Redux/Reducers/UserData';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 function ChatPersonsContainer({ setChatPerson }) {
   const navigate = useNavigate();
@@ -12,6 +12,8 @@ function ChatPersonsContainer({ setChatPerson }) {
   const AccessToken = useSelector((state) => state.UserData.userData);
   const [activeIndex, setActiveIndex] = useState(null);
   const [users, setUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(''); // State for the search term
+  const [filteredUsers, setFilteredUsers] = useState([]); // State for filtered users
 
   const handleLogOut = () => {
     dispatch(clearUserData());
@@ -36,7 +38,8 @@ function ChatPersonsContainer({ setChatPerson }) {
 
         const data = await response.json();
         console.log(data);
-        setUsers(data);
+        setUsers(data); // Set users fetched from API
+        setFilteredUsers(data); // Initialize filtered users with all users
       } catch (error) {
         console.log('Error:', error);
       }
@@ -44,14 +47,23 @@ function ChatPersonsContainer({ setChatPerson }) {
     FetchUsers();
   }, [AccessToken]);
 
+  // Update filtered users when the search term changes
+  useEffect(() => {
+    const filtered = users.filter(user =>
+      user.Username.toLowerCase().includes(searchTerm.toLowerCase()) // Assuming 'name' is a field in the user object
+    );
+    setFilteredUsers(filtered);
+  }, [searchTerm, users]);
+
   const handleSetActive = (index) => {
     setActiveIndex(index);
   };
 
   return (
     <>
+      <SearchBar setSearchTerm={setSearchTerm} /> {/* Pass setSearchTerm to SearchBar */}
       <div className='px-2 mt-2 w-[96%] h-[72%] hide-scrollbar rounded-lg py-2 flex flex-col mx-auto overflow-scroll'>
-        {users.map((user) => (
+        {filteredUsers.map((user) => (
           <ChatsPersons
             key={user._id}
             setChatPerson={setChatPerson}

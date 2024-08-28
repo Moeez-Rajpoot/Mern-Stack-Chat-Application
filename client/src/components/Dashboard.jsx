@@ -14,15 +14,16 @@ function Dashboard() {
     },
   ]);
 
+
   return (
     <div>
       <div className="bg-gray-600 flex  w-screen h-screen overflow-hidden">
-        <div className="flex flex-col mt-2 ml-2 border-2 border-black border-opacity-15 bg-[#0000002f]  rounded-3xl w-[30%] max-h-[97.5%] ">
+        <div className="flex flex-col mt-2 ml-3 border-2 border-black border-opacity-15 bg-gray-900  rounded-3xl w-[30%] max-h-[97.5%] ">
           <h2 className="w-full h-12 text-3xl font-mono pl-5 mt-2 text-green-600 ">
             Chats
           </h2>
 
-          <SearchBar />
+          
 
           <ChatPersonContainer setChatPerson={setChatPerson} />
         </div>

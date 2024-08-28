@@ -21,9 +21,9 @@ function ChatsPersons({ setChatPerson, isActive, setIsActive , Data  }) {
         onClick={handleClick} 
         className={`${
           isActive
-            ? "bg-[#1c1f2b] transform scale-[102%] transition ease-linear"
+            ? "bg-green-700 transform scale-[102%] transition ease-linear"
             : "bg-gray-900 backdrop-blur-3xl"
-        } py-2 px-3 rounded-2xl hover:bg-[#1c1f2b99] border-[1px] border-opacity-15 border-white flex items-center hover:cursor-pointer`}
+        } py-2 px-3 rounded-2xl hover:bg-green-600 border-[1px] border-opacity-15 border-white flex items-center hover:cursor-pointer`}
       >
         <div className="avatar online">
           <div className="w-12 rounded-full">
