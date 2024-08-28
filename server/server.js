@@ -3,8 +3,8 @@ const dotenv = require("dotenv").config();
 const { ConnectDb } = require("./config/dbconnection");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const {app , server, io} = require("./sockets/sockets");
 
-const app = express();
 const port = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -19,6 +19,6 @@ app.use("/api/message", require("./routes/messageRoutes"));
 
 
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
