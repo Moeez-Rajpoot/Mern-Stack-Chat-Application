@@ -1,13 +1,27 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import SendMessage from "./SendMessage";
+import { io } from 'socket.io-client';
+
+
 
 function MessageContainer({ selecteduser }) {
-  
+  const socket = io('http://localhost:3000');
   const userData = useSelector((state) => state.UserData.userData);
   const [messages, setMessages] = useState([]);
   const [updated, setUpdated] = useState(false);
   const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    // Listen for messages from the server
+    socket.on('newMessage', (message) => {
+      setMessages((prevMessages) => [...prevMessages, message]);
+    });
+
+    return () => {
+      socket.off('receiveMessage');
+    };
+  }, []);
 
   useEffect(() => {
     const GetMessages = async () => {
