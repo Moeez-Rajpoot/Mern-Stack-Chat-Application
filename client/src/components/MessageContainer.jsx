@@ -1,26 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
+import { receiveMessageSocket } from "../../sockets/sockets";
 import SendMessage from "./SendMessage";
-import { io } from 'socket.io-client';
 
-
-
-function MessageContainer({ selecteduser }) {
-  const socket = io('http://localhost:3000');
+function MessageContainer({ selecteduser, messages, setMessages }) {
   const userData = useSelector((state) => state.UserData.userData);
-  const [messages, setMessages] = useState([]);
   const [updated, setUpdated] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    // Listen for messages from the server
-    socket.on('newMessage', (message) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    });
-
-    return () => {
-      socket.off('receiveMessage');
-    };
+    receiveMessageSocket(setMessages); // Listen for new messages
   }, []);
 
   useEffect(() => {
@@ -46,10 +35,9 @@ function MessageContainer({ selecteduser }) {
 
         const data = await response.json();
         console.log("Messages fetched:", data);
-        setMessages(data); 
+        setMessages(data);
       } catch (error) {
         console.error("Error fetching messages:", error);
-      
       }
     };
 
@@ -58,7 +46,7 @@ function MessageContainer({ selecteduser }) {
 
   useEffect(() => {
     if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth"  });
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 
@@ -105,7 +93,8 @@ function MessageContainer({ selecteduser }) {
       <SendMessage
         receiverid={selecteduser.id}
         AccessToken={userData.accesstoken}
-        setUpdated={setUpdated}
+        SetMessage={setMessages}
+        SenderId={userData.id}
       />
     </div>
   );

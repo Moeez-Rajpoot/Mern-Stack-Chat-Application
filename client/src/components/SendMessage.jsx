@@ -1,15 +1,13 @@
 import React, {useState, useEffect } from "react";
+import { sendMessageSocket } from "../../sockets/sockets"
 
 
-
-
-
-
-function SendMessage({receiverid , AccessToken , setUpdated }) {
+function SendMessage({receiverid , AccessToken , SetMessage  , SenderId }) {
     const [message, setMessage] = useState("");
 
 
         const SendMessageValue = async () => {
+          sendMessageSocket( SetMessage ,  message , receiverid , SenderId);
             try {
             const response = await fetch(
                 `http://localhost:3000/api/message/sendmessage/${receiverid}`,
@@ -34,7 +32,6 @@ function SendMessage({receiverid , AccessToken , setUpdated }) {
             const data = await response.json();
             setMessage("");
             console.log("Message sent:", data);
-            setUpdated((prev) => !prev);
             } catch (error) {
             console.error("Error sending message:", error);
             }

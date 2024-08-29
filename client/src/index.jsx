@@ -7,13 +7,12 @@ import { SnackbarProvider } from "notistack";
 import { store } from "./Redux/store.jsx";
 import { Provider } from "react-redux";
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    {/* <UserProvider> */}
+
+  
     <Provider store={store}>
       <SnackbarProvider>
         <App />
       </SnackbarProvider>
     </Provider>
-    {/* </UserProvider> */}
-  </React.StrictMode>
+
 );

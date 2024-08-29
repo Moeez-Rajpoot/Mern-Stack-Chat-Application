@@ -13,8 +13,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SignupForm />} />
-        <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate replace to="/" />} />
+        <Route path="/" Component={SignupForm} />
+        <Route path="/dashboard" Component={user ? Dashboard : <Navigate replace to="/" />} />
       </Routes>
     </BrowserRouter>
   );
