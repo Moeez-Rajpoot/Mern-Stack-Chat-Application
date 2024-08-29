@@ -48,7 +48,7 @@ const VerifyUser = asynchandler(async (req, res) => {
   user.verificationToken = undefined;
   await user.save();
 
-  res.redirect("http://localhost:5173/login");
+  res.redirect("http://localhost:3000");
   // res.redirect("http://localhost:5173/login"); for react project
 
 });
@@ -123,6 +123,7 @@ const RegisterUser = asynchandler(async (req, res) => {
 const LoginUser = asynchandler(async (req, res) => {
   try {
     const { Email, Password } = req.body;
+    console.log("Request Body:", { Email, Password });
     if (!Email || !Password) {
       return res.status(400).json({ message: "Please provide all the fields" });
     }
