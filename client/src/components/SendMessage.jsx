@@ -11,7 +11,7 @@ function SendMessage({receiverid , AccessToken , SetMessage  , SenderId }) {
           setMessage("");
             try {
             const response = await fetch(
-                `http://localhost:3000/api/message/sendmessage/${receiverid}`,
+                `https://mern-stack-chat-application-flax.vercel.app/api/message/sendmessage/${receiverid}`,
                 {
                 method: "POST",
                 headers: {

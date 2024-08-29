@@ -26,7 +26,7 @@ function ChatPersonsContainer({ setChatPerson }) {
       try {
         const accessToken = AccessToken.accesstoken; 
         console.log(accessToken);
-        const response = await fetch('http://localhost:3000/api/auth/getallusers', {
+        const response = await fetch('https://mern-stack-chat-application-flax.vercel.app/api/auth/getallusers', {
           headers: {
             'Authorization': `Bearer ${accessToken}`
           }

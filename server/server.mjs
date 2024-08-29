@@ -23,7 +23,7 @@ ConnectDb();
 
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3000', 
+  origin: ['http://localhost:3000' , 'https://mern-stack-chat-application-flax.vercel.app'], 
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,

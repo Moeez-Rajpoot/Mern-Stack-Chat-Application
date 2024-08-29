@@ -74,7 +74,7 @@ const ProfileForm = ({ accesstoken, currentUserData , drop , setDropbox }) => {
     console.log("Updated user data:", updatedUser); // Add this line
   
     try {
-      const response = await fetch("http://127.0.0.1:3000/api/user/updatedata", {
+      const response = await fetch("https://mern-stack-chat-application-flax.vercel.app/api/user/updatedata", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
