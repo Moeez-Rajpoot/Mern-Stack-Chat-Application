@@ -1,5 +1,4 @@
 import react, { useState, useEffect } from "react";
-import SearchBar from "./SearchBar";
 import ChatPersonContainer from "./ChatPersonsContainer";
 import MessageContainer from "./MessageContainer";
 import ChatHeader from "./ChatHeader";
