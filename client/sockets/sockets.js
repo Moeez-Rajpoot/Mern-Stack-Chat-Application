@@ -1,6 +1,14 @@
 import { io } from "socket.io-client";
 
+
 let socket;
+let id;
+
+
+
+export const setUserId = (userId) => {
+  id = userId;
+};
 
 export const initializeSocket = (userId, userData) => {
   if (userData && !socket) {
@@ -22,7 +30,7 @@ export const initializeSocket = (userId, userData) => {
 export const sendMessageSocket = ( SetMessage , message, receiverId , SenderId) => {
   if (socket) {
     console.log("Emit Msg is called:", message, "and receiver id:", receiverId);
-    socket.emit("newMessage", { message, receiverId });
+    socket.emit("newMessage", { message, receiverId , SenderId });
     const createdAt = new Date().toISOString();
     SetMessage((prevMessages)=> [...prevMessages , {
         Message: message,
@@ -32,7 +40,7 @@ export const sendMessageSocket = ( SetMessage , message, receiverId , SenderId) 
   }
 };
 
-export const receiveMessageSocket = (setMessages) => {
+export const receiveMessageSocket = ({ setMessages, enqueueSnackbar }) => {
   console.log("Receiving Socket Enabled");
 
   if (socket) {
@@ -41,8 +49,19 @@ export const receiveMessageSocket = (setMessages) => {
 
     // Attach the new message listener
     socket.on("newMessage", (message) => {
-      console.log("New message received:", message);
-      setMessages((prevMessages) => [...prevMessages, message]);
+      console.log("New message received:", message.Receiver , "and id is:", id);
+      if (message.Receiver === id) {
+        console.log("condition is true ");
+        setMessages((prevMessages) => {
+          if (!Array.isArray(prevMessages)) {
+            prevMessages = [];
+          }
+          return [...prevMessages, message];
+        });
+      }
+      else{
+        enqueueSnackbar("New message", { variant: "info", autoHideDuration: 1000 });  
+      }
     });
   }
 };

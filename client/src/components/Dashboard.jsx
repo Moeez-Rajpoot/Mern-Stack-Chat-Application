@@ -8,6 +8,7 @@ import {
   receiveMessageSocket,
   closeSocket,
 } from "../../sockets/sockets";
+import { enqueueSnackbar } from "notistack";
 
 function Dashboard() {
   const userData = useSelector((state) => state.UserData.userData);
@@ -26,7 +27,7 @@ function Dashboard() {
     console.log("Sockets are Running")
     if (userData) {
       initializeSocket( userData.id , userData); 
-      receiveMessageSocket(setMessages);
+      receiveMessageSocket({setMessages , enqueueSnackbar , id: chatPerson.id });
     }
 
     return () => {

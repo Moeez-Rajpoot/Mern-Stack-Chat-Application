@@ -8,6 +8,7 @@ function SendMessage({receiverid , AccessToken , SetMessage  , SenderId }) {
 
         const SendMessageValue = async () => {
           sendMessageSocket( SetMessage ,  message , receiverid , SenderId);
+          setMessage("");
             try {
             const response = await fetch(
                 `http://localhost:3000/api/message/sendmessage/${receiverid}`,
@@ -30,7 +31,7 @@ function SendMessage({receiverid , AccessToken , SetMessage  , SenderId }) {
             }
         
             const data = await response.json();
-            setMessage("");
+            
             console.log("Message sent:", data);
             } catch (error) {
             console.error("Error sending message:", error);

@@ -5,12 +5,8 @@ import SendMessage from "./SendMessage";
 
 function MessageContainer({ selecteduser, messages, setMessages }) {
   const userData = useSelector((state) => state.UserData.userData);
-  const [updated, setUpdated] = useState(false);
   const messagesEndRef = useRef(null);
 
-  useEffect(() => {
-    receiveMessageSocket(setMessages); // Listen for new messages
-  }, []);
 
   useEffect(() => {
     const GetMessages = async () => {
@@ -42,7 +38,7 @@ function MessageContainer({ selecteduser, messages, setMessages }) {
     };
 
     GetMessages();
-  }, [selecteduser, updated]);
+  }, [selecteduser]);
 
   useEffect(() => {
     if (messagesEndRef.current) {

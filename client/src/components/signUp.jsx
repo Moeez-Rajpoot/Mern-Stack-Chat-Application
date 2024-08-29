@@ -495,7 +495,7 @@ function signUp() {
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row text-black focus:bg-transparent  justify-center items-center bg-no-repeat bg-cover h-screen w-full bg-black">
+      <div className="flex flex-col sm:flex-row text-black  justify-center items-center bg-no-repeat bg-cover h-screen w-full bg-black">
         <div
           className={
             isSignUp
@@ -574,6 +574,7 @@ function signUp() {
               <div className="custom-input-field">
                 <FontAwesomeIcon icon={faUser} className="ml-2" />
                 <input
+                autoComplete="off"
                   onChange={handleUsernameCheck}
                   value={username}
                   placeholder="Username"
@@ -604,6 +605,7 @@ function signUp() {
               <div className={`custom-input-field ${isReset && "-mt-10"}`}>
                 <FontAwesomeIcon icon={faEnvelope} className="ml-2" />
                 <input
+                  autoComplete="off"
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email"
                   value={email}
@@ -623,6 +625,7 @@ function signUp() {
                       ? handlePasswordCheck(e)
                       : setPassword(e.target.value)
                   }
+                  autoComplete="off"
                   value={password}
                   placeholder="Password"
                   type="password"
@@ -689,6 +692,7 @@ function signUp() {
               <div className="custom-input-field">
                 <FontAwesomeIcon icon={faPhone} className="ml-2" />
                 <input
+                autoComplete="off"
                   onChange={handlePhoneCheck}
                   value={phone}
                   placeholder="Phone No"
@@ -709,6 +713,7 @@ function signUp() {
               <div className="custom-input-field">
                 <FontAwesomeIcon icon={faIdCard} className="ml-2" />
                 <input
+                autoComplete="off"
                   onChange={handleCnicCheck}
                   value={cnic}
                   placeholder="CNIC"
@@ -734,6 +739,7 @@ function signUp() {
                   Date of Birth:
                 </label>
                 <input
+                autoComplete="off"
                   onChange={(e) => setDateOfBirth(e.target.value)}
                   value={dateOfBirth}
                   type="date"

@@ -25,7 +25,7 @@ io.on('connection', (socket) => {
     console.log('User registered with id:', userId, 'and socket id:', socket.id);
   });
 
-  socket.on('newMessage', ({ message, receiverId }) => {
+  socket.on('newMessage', ({ message, receiverId , SenderId }) => {
     console.log('New message:', message, 'Receiver:', receiverId);
 
     const receiverSocketId = users[receiverId]; 
@@ -35,7 +35,8 @@ io.on('connection', (socket) => {
         console.log("Message passed to of id: " , receiverId , "and of socket id: " , receiverSocketId );
       io.to(receiverSocketId).emit('newMessage', { 
         Message: message, 
-        SenderId: socket.id, 
+        SenderId: socket.id,
+        Receiver: SenderId,
         createdAt: new Date()
       });
       console.log('Message sent to receiver with socket id:', receiverSocketId);

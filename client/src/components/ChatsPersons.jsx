@@ -1,11 +1,14 @@
 import { faMessage } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import {setUserId} from "../../sockets/sockets";
 
 function ChatsPersons({ setChatPerson, isActive, setIsActive , Data  }) {
   
   const handleClick = () => {
+
     setIsActive();
+    setUserId(Data._id);
     setChatPerson({
       id: Data._id,
       name: Data.Username,
