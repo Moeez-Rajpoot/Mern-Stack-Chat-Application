@@ -17,7 +17,7 @@ function MessageContainer({ selecteduser, messages, setMessages }) {
         console.log("Fetching messages for user:", selecteduser);
 
         const response = await fetch(
-          `https://mern-stack-chat-application-flax.vercel.app/api/message/getmessage/${selecteduser.id}`,
+          `http://localhost:3000/api/message/getmessage/${selecteduser.id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

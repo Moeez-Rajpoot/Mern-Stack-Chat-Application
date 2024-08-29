@@ -1,20 +1,18 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
-console.log('CONNECTION_STRING:', process.env.CONNECTION_STRING); 
-
 import express from 'express';
-import { ConnectDb } from './config/dbconnection.mjs';
+import dotenv from 'dotenv';
+import { ConnectDb } from './config/dbconnection.js';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { app, server, io } from './sockets/sockets.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
-const host = "https://mern-stack-chat-application-flax.vercel.app"
+
+dotenv.config();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -23,7 +21,7 @@ ConnectDb();
 
 app.use(express.json());
 app.use(cors({
-  origin: ['http://localhost:3000' , 'https://mern-stack-chat-application-flax.vercel.app'], 
+  origin: 'http://localhost:5173', 
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -38,6 +36,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));
 });
 
-server.listen(port, host, () => {
+server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

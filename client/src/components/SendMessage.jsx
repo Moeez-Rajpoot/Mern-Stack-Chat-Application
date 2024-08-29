@@ -8,10 +8,9 @@ function SendMessage({receiverid , AccessToken , SetMessage  , SenderId }) {
 
         const SendMessageValue = async () => {
           sendMessageSocket( SetMessage ,  message , receiverid , SenderId);
-          setMessage("");
             try {
             const response = await fetch(
-                `https://mern-stack-chat-application-flax.vercel.app/api/message/sendmessage/${receiverid}`,
+                `http://localhost:3000/api/message/sendmessage/${receiverid}`,
                 {
                 method: "POST",
                 headers: {

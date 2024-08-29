@@ -59,7 +59,7 @@ function signUp() {
     };
 
     try {
-      const response = await fetch("https://mern-stack-chat-application-flax.vercel.app/api/auth/register", {
+      const response = await fetch("http://localhost:3000/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -310,7 +310,7 @@ function signUp() {
     };
 
     try {
-      const response = await fetch("https://mern-stack-chat-application-flax.vercel.app/api/auth/login", {
+      const response = await fetch("http://localhost:3000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -367,7 +367,7 @@ function signUp() {
     setIsLoading(true);
   
     try {
-      const response = await fetch('https://mern-stack-chat-application-flax.vercel.app/api/auth/reset-password', {
+      const response = await fetch('http://localhost:3000/api/auth/reset-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
