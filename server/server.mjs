@@ -10,7 +10,7 @@ import bodyParser from 'body-parser';
 import { app, server, io } from './sockets/sockets.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
+const host = "https://mern-stack-chat-application-flax.vercel.app"
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -38,6 +38,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));
 });
 
-server.listen(port, () => {
+server.listen(port, host, () => {
   console.log(`Server is running on port ${port}`);
 });
