@@ -30,7 +30,7 @@ function SendMessage({receiverid , AccessToken , SetMessage  , SenderId }) {
             }
         
             const data = await response.json();
-            
+            setMessage("");
             console.log("Message sent:", data);
             } catch (error) {
             console.error("Error sending message:", error);
