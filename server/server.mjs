@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { ConnectDb } from './config/dbconnection.js';
+import { ConnectDb } from './config/dbconnection.mjs';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { app, server, io } from './sockets/sockets.js';
